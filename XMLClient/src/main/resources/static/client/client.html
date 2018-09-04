@@ -1,0 +1,43 @@
+ <nav class="navbar navbar-inverse" role="navigation"> 
+      <ul class="nav navbar-nav">
+           <li><a>WELCOME {{USER.username}}</a></li>
+           <li><a ui-sref="client">Profile</a></li>
+            <li class="dropdown">
+        		<a class="dropdown-toggle" data-toggle="dropdown">Messages<span class="caret"></span></a>
+       			<ul class="dropdown-menu">
+	          	
+	          		<li><a ui-sref="receivedMessages">Received Messages</a></li>
+	          		<li><a ui-sref="sentMessages">Sent Messages</a></li>	
+        		</ul>
+      		</li>
+      		<li><a ui-sref="accommodation">Accommodations</a></li>
+      		<li><a ui-sref="reservation">Reservations</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">         
+          <li><a ui-sref="signout">SignOut</a></li>
+          
+          
+      </ul>
+ </nav>
+ 
+ 
+ 
+ <form name="profileForm">			
+	<h2>Profile</h2>
+	<Label>First name</Label><br>
+	<input class="input-css" type="text" ng-readonly="true" required ng-model="user.firstName">
+
+	<br><Label>Last name</Label><br>
+	<input class="input-css" type="text" ng-readonly="true" required ng-model="user.lastName">
+
+	<br><Label>Username</Label><br>
+	<input class="input-css" type="text" ng-readonly="true" required ng-model="user.username">
+
+	<br><Label>E-mail</Label><br>
+	<input class="input-css" type="email" ng-readonly="true" required ng-model="user.email">
+
+	<br><Label>Password</Label><br>
+	<input class="input-css" type="password" ng-readonly="true" required ng-model="user.password">
+
+</form>
+ 

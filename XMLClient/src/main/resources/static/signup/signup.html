@@ -1,0 +1,32 @@
+ <nav class="navbar navbar-inverse" role="navigation"> 
+      <ul class="nav navbar-nav">
+           <li><a>WELCOME TO CLIENT BOOKING</a></li>
+           <li><a ui-sref="accommodationLogout">Accommodations</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">         
+	      <li><a ui-sref="signin">SignIn</a></li>
+          <li><a ui-sref="signup">SignUp</a></li>
+          
+      </ul>
+ </nav>
+ 
+ 
+ <form name="signupForm">			
+	<h2>SignUp</h2>
+	<br><Label>First name</Label><br>
+	<input class="input-css" type="text" required ng-model="user.firstName">
+
+	<br><Label>Last name</Label><br>
+	<input class="input-css" type="text" required ng-model="user.lastName">
+
+	<br><Label>Username</Label><br>
+	<input class="input-css" type="text" required ng-model="user.username">
+
+	<br><Label>E-mail</Label><br>
+	<input class="input-css" type="email" required ng-model="user.email">
+
+	<br><Label>Password</Label><br>
+	<input class="input-css" type="password" required ng-model="user.password">
+
+	<button class="button" ng-click="signupForm.$valid && signup()">SignUp</button>
+</form>

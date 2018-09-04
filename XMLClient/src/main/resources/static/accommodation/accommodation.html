@@ -1,0 +1,124 @@
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li><a>WELCOME {{USER.username}}</a></li>
+		<li><a ui-sref="client">Profile</a></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown">Messages<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a ui-sref="receivedMessages">Received Messages</a></li>
+				<li><a ui-sref="sentMessages">Sent Messages</a></li>
+			</ul></li>
+		<li><a ui-sref="accommodation">Accommodations</a></li>
+		<li><a ui-sref="reservation">Reservations</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a ui-sref="signout">SignOut</a></li>
+
+
+	</ul>
+</nav>
+
+<form>
+	<label>Country:</label> <input class="input-css" type="text" value=""
+		ng-model="searchCountry"> <label>City:</label> <input
+		class="input-css" type="text" value="" ng-model="searchCity">
+
+	<label>Adress:</label> <input class="input-css" type="text" value=""
+		ng-model="searchAdress"> <label>Number of person:</label> <input
+		class="input-css" type="number" value=""
+		ng-model="searchNumberOfPerson">
+	<hr>
+	<br> <label>Start date:</label> <input class="input-css"
+		type="date" value="" ng-model="searchStartDate"> <label>End
+		date:</label> <input class="input-css" type="date" value=""
+		ng-model="searchEndDate">
+	<!-- 
+		<button ng-click="ordinarySearch()">Ordinary Search</button>
+		-->
+</form>
+
+<hr>
+<div>
+	<span ng-repeat="addition in additionalServices"> <label
+		class="checkbox-inline"><input type="checkbox"
+			value="{{addition.id}}" />{{addition.service}}</label>
+	</span>
+</div>
+
+<select id="soflow" ng-model="selectedCategoryType"
+	ng-options="categoryType.type for categoryType in categoryTypes">
+	<option class="placeholder" selected disabled value="">Choose
+		category type</option>
+</select>
+
+<select id="soflow" ng-model="selectedAccommodationType"
+	ng-options="accommodationType.type for accommodationType in accommodationTypes">
+
+	<option class="placeholder" selected disabled value="">Choose
+		accommodationType</option>
+</select>
+<button class="button" ng-click="advancedSearch()">Search</button>
+
+<hr>
+<table id="accommodations" border="1">
+	<tr>
+		<th>Title</th>
+		<th>Country</th>
+		<th>City</th>
+		<th>Adress</th>
+		<th>Number of person</th>
+		<th>Category Type</th>
+		<th>Accommodation Type</th>
+		<th>Rating</th>
+		<th></th>
+	</tr>
+	<tr
+		ng-repeat="accommodation in accommodations | orderBy:['category.type', 'ratingSum']">
+		<td>{{accommodation.title}}</td>
+		<td>{{accommodation.location.country }}</td>
+		<td>{{accommodation.location.city }}</td>
+		<td>{{accommodation.location.adress }}</td>
+		<td>{{accommodation.numberOfPerson}}</td>
+		<td>{{accommodation.category.type}}</td>
+		<td>{{accommodation.type.type}}</td>
+		<td ng-hide="false">{{accommodation.ratingSum}}</td>
+		<td align="center"><button
+				ng-click="details(accommodation.id, accommodation)">Details</button></td>
+	</tr>
+</table>
+
+<hr>
+
+
+<div ng-hide="hideTableForTermins==true">
+	<h3>{{detailForTerminAccommodation.title}}</h3>
+	<h6>Category type: {{detailForTerminAccommodation.category.type}}</h6>
+	<h6>Type: {{detailForTerminAccommodation.type.type}}</h6>
+	<p>{{detailForTerminAccommodation.description}}</p>
+	<table id="accommodationDetails" border="1">
+		<tr>
+			<th>Start date</th>
+			<th>End date</th>
+			<th>Price</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="termin in accommodationForTermins | orderBy:['price']">
+			<td>{{date(termin.startDate)}}</td>
+			<td>{{date(termin.endDate)}}</td>
+			<td>{{termin.price}}</td>
+			<td align="center"><button
+					ng-click="reservate(termin, detailForTerminAccommodation)">Reservate</button></td>
+		</tr>
+
+	</table>
+
+	<div ng-repeat="comment in comments">
+		<div class="alert-message alert-message-default">
+			<h4>Commentator {{comment.commentator.firstName}}</h4>
+			<p>{{comment.content}}</p>
+		</div>
+	</div>
+</div>
+
+
+

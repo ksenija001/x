@@ -1,0 +1,63 @@
+<nav class="navbar navbar-inverse" role="navigation"> 
+      <ul class="nav navbar-nav">
+           <li><a>WELCOME {{USER.username}}</a></li>
+           <li><a ui-sref="client">Profile</a></li>
+            <li class="dropdown">
+        		<a class="dropdown-toggle" data-toggle="dropdown">Messages<span class="caret"></span></a>
+       			<ul class="dropdown-menu">
+	          	
+	          		<li><a ui-sref="receivedMessages">Received Messages</a></li>
+	          		<li><a ui-sref="sentMessages">Sent Messages</a></li>	
+        		</ul>
+      		</li>
+      		<li><a ui-sref="accommodation">Accommodations</a></li>
+      		<li><a ui-sref="reservation">Reservations</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">         
+          <li><a ui-sref="signout">SignOut</a></li>
+          
+          
+      </ul>
+ </nav>
+ 
+ 
+ <table id="accommodations" border="1">
+	<tr>
+		<th>Title</th>
+		<th>Category</th>
+		<th>Number of person</th>
+		<th>Start date</th>
+		<th>End date</th>
+		<th>Bill</th>
+		<th></th>
+		<th></th>
+		<!-- <th></th> -->
+	</tr>
+	<tr ng-repeat="reservation in reservations | orderBy:['reservation.bill']">
+	    <td>{{reservation.accommodation.title}}</td>
+	    <td>{{reservation.accommodation.category.type}}</td>
+	    <td>{{reservation.accommodation.numberOfPerson}}</td>
+	  	<td>{{date(reservation.startDate)}}</td>
+	  	<td>{{date(reservation.endDate)}}</td>
+	    <td>{{reservation.bill }}</td>
+	    <td align="center"><button ng-click="writeMessage(reservation)">Write Message</button></td>
+	    <!-- <td align="center"><button ng-click="writeComment(reservation)">Write Comment</button></td> -->
+	    <td align="center"><button ng-click="cancelReservation(reservation.id)">Cancel Reservation</button></td>
+  	</tr>
+</table> 
+
+<hr>
+<form ng-hide="write==false" name=sendMessageForm>
+	<h4>Write message to {{toWrite}}</h4>
+	<Label>Content: </Label>
+	<input class="input-css" type="text" value="" ng-model="messageContent">
+	<button class="button" ng-click="sendMess(messageContent)">Send Message</button>
+</form>
+<hr>
+
+<form ng-hide="writeC==false" name=sendMessageForm>
+	<h4>Write comment for accommodation {{toWriteComment}}</h4>
+	<Label>Content: </Label>
+	<input class="input-css" type="text" value="" ng-model="commentContent">
+	<button class="button" ng-click="sendComm(commentContent)">Send Comment</button>
+</form>
