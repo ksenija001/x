@@ -1,0 +1,22 @@
+ <nav class="navbar navbar-inverse" role="navigation"> 
+      <ul class="nav navbar-nav">
+          <li><a>WELCOME TO RATING BOOKING</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">        
+	      <li><a ui-sref="signin">SignIn</a></li>
+          <li><a ui-sref="signup">SignUp</a></li>
+
+      </ul>
+ </nav>
+<div>
+	<form name="signinForm">			
+		<h2>SignIn</h2>
+		<br><Label>E-mail</Label><br>
+		<input class="input-css" type="email" required ng-model="user.email">
+	
+		<br><Label>Lozinka</Label><br>
+		<input class="input-css" type="password" required ng-model="user.password">
+	
+		<button class="button"  ng-click="signinForm.$valid && signin()">SignIn</button>
+	</form>
+</div>

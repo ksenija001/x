@@ -1,0 +1,83 @@
+
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li><a>WELCOME {{USER.username}}</a></li>
+		<li><a ui-sref="client">Profile</a></li>
+		<li><a ui-sref="accommodation">Accommodation</a></li>
+
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a ui-sref="signout">SignOut</a></li>
+	</ul>
+</nav>
+
+<hr>
+
+<form>
+	<label>Rating:</label> <input type="number" value=""
+		ng-model="searchRating">
+
+	<button ng-click="searchByRating(searchRating)">Search</button>
+
+</form>
+
+<hr>
+<table id="accommodations" border="1">
+	<tr>
+		<th>Title</th>
+		<th>Country</th>
+		<th>City</th>
+		<th>Adress</th>
+		<th>Number of person</th>
+		<th>Category Type</th>
+		<th>Accommodation Type</th>
+		<th>Rating</th>
+		<th></th>
+	</tr>
+	<tr
+		ng-repeat="accommodation in accommodations | orderBy:['category.type', 'ratingSum']">
+		<td>{{accommodation.title}}</td>
+		<td>{{accommodation.location.country }}</td>
+		<td>{{accommodation.location.city }}</td>
+		<td>{{accommodation.location.adress }}</td>
+		<td>{{accommodation.numberOfPerson}}</td>
+		<td>{{accommodation.category.type}}</td>
+		<td>{{accommodation.type.type}}</td>
+		<td ng-hide="false">{{accommodation.ratingSum}}</td>
+		<td align="center"><button
+				ng-click="details(accommodation.id, accommodation)">Details</button></td>
+	</tr>
+</table>
+
+<hr>
+
+<div ng-hide="hideTable==true">
+	<h3>{{detailForTerminAccommodation.title}}</h3>
+	<h6>Category: {{detailForTerminAccommodation.category.type}}</h6>
+	<h6>Type: {{detailForTerminAccommodation.type.type}}</h6>
+	<h6>Rating: {{ratingSum}}</h6>
+	<p>{{detailForTerminAccommodation.description}}</p>
+
+
+	<div ng-repeat="comment in comments">
+		<div class="alert-message alert-message-default">
+			<h4>Commentator {{comment.commentator.firstName}}</h4>
+			<p>{{comment.content}}</p>
+		</div>
+	</div>
+	<select ng-model="selectedRate">
+		<option ng-repeat="x in rating">{{x}}</option>
+	</select>
+	<button ng-click="setRate(selectedRate)">Set Rate</button>
+
+</div>
+
+<hr>
+<button ng-hide="wComm==false" ng-click="writeComment(detailForTerminAccommodation)">Comment</button>
+<hr>
+<form ng-hide="writeC==false" name=sendMessageForm>
+	<h4>Write comment for accommodation {{toWriteComment}}</h4>
+	<Label>Content: </Label> <input type="text" value=""
+		ng-model="commentContent">
+	<button ng-click="sendComm(commentContent)">Send Comment</button>
+</form>
