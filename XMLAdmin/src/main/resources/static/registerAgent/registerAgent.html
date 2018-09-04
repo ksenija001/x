@@ -1,0 +1,34 @@
+
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li><a>WELCOME {{USER.username}}</a></li>
+		<li><a ui-sref="client">Clients</a></li>
+		<li><a ui-sref="comment">Comments</a></li>
+		<li><a ui-sref="category">Categories</a></li>
+		<li><a ui-sref="type">Types</a></li>
+		<li><a ui-sref="addition">Additions</a></li>
+		<li><a ui-sref="registerAgent">Register agent</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a ui-sref="signout">SignOut</a></li>
+	</ul>
+</nav>
+
+
+<form name="registerAgentForm">			
+	<h2>Register Agent</h2>
+	<br><Label>First name</Label><br>
+	<input class="input-css" type="text" required ng-model="agent.firstName">
+
+	<br><Label>Last name</Label><br>
+	<input class="input-css" type="text" required ng-model="agent.lastName">
+
+	<br><Label>Adress</Label><br>
+	<input class="input-css" type="text" required ng-model="agent.adress">
+
+	<br><Label>Pib</Label><br>
+	<input class="input-css" type="text" required ng-model="agent.pib">
+
+
+	<button  class="button" ng-click="registerAgentForm.$valid && register()">RegisterAgent</button>
+</form>

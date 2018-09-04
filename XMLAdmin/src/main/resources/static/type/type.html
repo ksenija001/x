@@ -1,0 +1,47 @@
+
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li><a>WELCOME {{USER.username}}</a></li>
+		<li><a ui-sref="client">Clients</a></li>
+		<li><a ui-sref="comment">Comments</a></li>
+		<li><a ui-sref="category">Categories</a></li>
+		<li><a ui-sref="type">Types</a></li>
+		<li><a ui-sref="addition">Additions</a></li>
+		<li><a ui-sref="registerAgent">Register agent</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a ui-sref="signout">SignOut</a></li>
+	</ul>
+</nav>
+
+<button ng-hide="addFlag==true" ng-click="createType()">Create
+	Type</button>
+</td>
+
+<form ng-hide="addFlag==false" name=addTypeForm>
+	<h4>Write type:</h4>
+	<input type="text" value="" ng-model="typeOfType">
+	<button ng-click="addType(typeOfType)">Add Type</button>
+</form>
+
+<hr>
+<table id = "type" border="1">
+	<tr>
+		<th>Type</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="type in types">
+
+		<td>{{type.type}}</td>
+		<td align="center"><button ng-click="deleteType(type)">Delete</button></td>
+		<td align="center"><button ng-click="writeEdit(type)">Edit</button></td>
+	</tr>
+</table>
+
+<hr>
+<form ng-hide="editFlag==false" name=editTypeForm>
+	<h4>This type is {{typeContent}}, change to:</h4>
+	<input type="text" value="" ng-model="editedType">
+	<button ng-click="edit(editedType)">Edit this type</button>
+</form>

@@ -1,0 +1,42 @@
+
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li><a>WELCOME {{USER.username}}</a></li>
+		<li><a ui-sref="client">Clients</a></li>
+		<li><a ui-sref="comment">Comments</a></li>
+		<li><a ui-sref="category">Categories</a></li>
+		<li><a ui-sref="type">Types</a></li>
+		<li><a ui-sref="addition">Additions</a></li>
+		<li><a ui-sref="registerAgent">Register agent</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a ui-sref="signout">SignOut</a></li>
+	</ul>
+</nav>
+
+<table id="accommodationDetails"  border="1">
+	<tr>
+		<th>Accomodation</th>
+		<th>Commentator</th>
+		<th>Content</th>
+		<th>Approved</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="comment in comments">
+
+		<td>{{comment.accommodation.title}}</td>
+		<td>{{comment.commentator.username}}</td>
+		<td>{{comment.content}}</td>
+		<td>{{comment.approved}}</td>
+
+
+		<td ng-hide="comment.approved==true" align="center"><button
+				ng-if="comment.approved==false" ng-click="approve(comment)">Approve</button></td>
+		<td ng-hide="comment.approved==false" align="center"><button
+				ng-if="comment.approved==true" ng-click="refuse(comment)">Refuse</button></td>
+
+		<td align="center"><button ng-click="deleteComment(comment)">Delete</button></td>
+
+	</tr>
+</table>

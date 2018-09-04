@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-inverse" role="navigation">
+	<ul class="nav navbar-nav">
+		<li><a>WELCOME {{USER.username}}</a></li>
+		<li><a ui-sref="client">Clients</a></li>
+		<li><a ui-sref="comment">Comments</a></li>
+		<li><a ui-sref="category">Categories</a></li>
+		<li><a ui-sref="type">Types</a></li>
+		<li><a ui-sref="addition">Additions</a></li>
+		<li><a ui-sref="registerAgent">Register agent</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a ui-sref="signout">SignOut</a></li>
+	</ul>
+</nav>
+
+<button ng-hide="addFlag==true" ng-click="createCategory()">Create
+	Category</button>
+</td>
+
+<form ng-hide="addFlag==false" name=addCategoryForm>
+	<h4>Write type of category:</h4>
+	<input type="text" value="" ng-model="typeOfCategory">
+	<button ng-click="addCategory(typeOfCategory)">Add Category</button>
+</form>
+
+<hr>
+
+<table id = "category" border="1">
+	<tr>
+		<th>Category</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="category in categories">
+
+		<td>{{category.type}}</td>
+		<td align="center"><button ng-click="deleteCategory(category)">Delete</button></td>
+		<td align="center"><button ng-click="writeEdit(category)">Edit</button></td>
+	</tr>
+</table>
+
+<hr>
+<form ng-hide="editFlag==false" name=editCategoryForm>
+	<h4>This category type is {{categoryType}}, change to:</h4>
+	<input type="text" value="" ng-model="editedCategory">
+	<button ng-click="edit(editedCategory)">Edit this category</button>
+</form>
